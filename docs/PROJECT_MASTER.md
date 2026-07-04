@@ -792,54 +792,48 @@ sin escribir una línea.
 
 ---
 
-# 32. Próximos pasos - Inicio Fase 3
+# 32. Estado de Fase 3 - Input Management ✅
 
-## Tarea inmediata: Input Management
+## Completado exitosamente
 
-Implementar primero:
+1. **InputManager** (src/core/InputManager.js)
+   - Gestor central de entrada
+   - Registro y control de handlers
+   - Tracking de teclas presionadas
+   - Control de posición del mouse
+   - Métodos: registerHandler(), enableHandler(), disableHandler(), initialize(), destroy()
+   - Métodos de consulta: isKeyPressed(), getMousePosition(), isHandlerEnabled()
 
-1. **InputManager** - Gestor central de entrada
-   - Registro y activación de handlers
-   - Sistema de teclas presionadas
-   - Delegación de eventos
+2. **MouseHandler** (src/core/input/MouseHandler.js)
+   - Manejo completo de eventos de mouse
+   - Eventos: mousemove, mousedown, mouseup, click, dblclick
+   - Detección de drag automática
+   - Evento drag.start y drag.end
 
-2. **MouseHandler** - Manejo de mouse
-   - Posición (x, y)
-   - Click, double click, drag
-   - Eventos: mouse.move, mouse.down, mouse.up, mouse.click
+3. **KeyboardHandler** (src/core/input/KeyboardHandler.js)
+   - Manejo de teclado
+   - Eventos: keydown, keyup
+   - Tracking de teclas presionadas
+   - Soporte para key codes y códigos de tecla
 
-3. **KeyboardHandler** - Manejo de teclado
-   - Key down, key up
-   - Detección de teclas presionadas
-   - Eventos: keyboard.down, keyboard.up
+4. **TouchHandler** (src/core/input/TouchHandler.js)
+   - Manejo táctil con multi-touch
+   - Detecta: tap, swipe (4 direcciones), multi-touch
+   - Parámetros configurables: tapThreshold, swipeMinDistance
+   - Tracking de dedos activos
 
-4. **TouchHandler** - Manejo táctil
-   - Tap, swipe, pinch
-   - Multi-touch support
-   - Eventos: touch.start, touch.move, touch.end
+5. **InputManagerPlugin** (src/plugins/core/InputManagerPlugin.js)
+   - Integración completa con Framework
+   - Ciclo de vida: install → start → stop
+   - EventBus para todos los eventos de input
+   - Element configurable (browser/Node.js compatible)
 
-5. **InputManagerPlugin** - Integración con plugin system
-   - Registro automático de handlers
-   - Activación/desactivación
-
-## Archivos a crear
-
-```
-src/core/
-├── InputManager.js
-├── input/
-│   ├── MouseHandler.js
-│   ├── KeyboardHandler.js
-│   └── TouchHandler.js
-
-src/plugins/
-└── core/
-    └── InputManagerPlugin.js
-```
+6. **Comando CLI**
+   - `npm run gpf -- test:input` - Testea InputManager completo
 
 ---
 
-# 33. Roadmap actualizado
+# 33. Próximos pasos - Inicio Fase 4
 
 ## Fase 1: Framework Base
 
@@ -864,22 +858,16 @@ src/plugins/
 
 ## Fase 3: Input Management
 
-⬜ Input Manager - Abstracción base
-⬜ Mouse Handler - Eventos de mouse
-⬜ Keyboard Handler - Eventos de teclado
-⬜ Touch Handler - Eventos táctiles
-⬜ Gamepad Handler - Soporte de controles
+✅ Input Manager - Abstracción base
+✅ Mouse Handler - Eventos de mouse
+✅ Keyboard Handler - Eventos de teclado
+✅ Touch Handler - Eventos táctiles
+✅ InputManagerPlugin - Integración completa
+✅ Comando CLI: test:input
 
 ---
 
-## Fase 4: Scene & UI System
-
-⬜ Scene Manager - Gestión de escenas
-⬜ UI Manager - Sistema de componentes
-⬜ Layout Engine - Cálculo de posiciones
-⬜ Theme Manager - Temas y estilos
-
----
+## Fase 4: Scene & UI System (PRÓXIMA)
 
 ## Fase 5: Rendering Engine
 
@@ -961,9 +949,22 @@ src/plugins/
 
 # 34. Control de versiones del documento
 
-**Versión actual: 2.1**
+**Versión actual: 2.2**
 
 **Última actualización: 2026-07-04**
+
+**Cambios en v2.2:**
+
+- ✅ Fase 3 completada (Input Management)
+- ✅ Implementación de InputManager con 3 handlers
+- ✅ MouseHandler: move, down, up, click, dblclick, drag
+- ✅ KeyboardHandler: down, up, key state tracking
+- ✅ TouchHandler: tap, swipe, multi-touch support
+- ✅ InputManagerPlugin con integración EventBus
+- ✅ Comando CLI: test:input
+- ✅ Tests pasados exitosamente
+- ✅ Roadmap actualizado: Fases 1, 2 y 3 completas
+- ✅ Próximos pasos detallados para Fase 4 (Scene & UI System)
 
 **Cambios en v2.1:**
 
@@ -974,15 +975,6 @@ src/plugins/
 - ✅ Tests pasados exitosamente
 - ✅ Roadmap actualizado: Fase 1 y 2 completas, Fase 3 próxima
 - ✅ Próximos pasos detallados para Fase 3 (Input Management)
-
-**Cambios en v2.0:**
-
-- ✅ Actualización de estado real de Fase 1
-- ✅ Detalles técnicos de estructura de código
-- ✅ Reorganización del roadmap por fases
-- ✅ Próximos pasos específicos para Fase 2 (Asset Management)
-- ✅ Descripción detallada de qué construir en cada fase
-- ✅ Eliminación de duplicaciones
 
 ---
 

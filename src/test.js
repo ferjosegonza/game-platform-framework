@@ -3,6 +3,7 @@ const Framework = require("./core/Framework");
 const LoggerPlugin = require("./plugins/core/LoggerPlugin");
 const StatisticsPlugin = require("./plugins/core/StatisticsPlugin");
 const AssetManagerPlugin = require("./plugins/core/AssetManagerPlugin");
+const InputManagerPlugin = require("./plugins/core/InputManagerPlugin");
 
 const framework = new Framework();
 
@@ -12,6 +13,9 @@ framework.register(new StatisticsPlugin());
 
 // Register AssetManager with custom cache size (10MB for testing)
 framework.register(new AssetManagerPlugin({ cacheSize: 10485760 }));
+
+// Register InputManager
+framework.register(new InputManagerPlugin());
 
 framework.boot();
 
@@ -55,5 +59,44 @@ console.log(`  Loaded: ${stats.loaded}`);
 console.log(`  Cache size: ${stats.cache.itemCount} items`);
 console.log(`  Cache usage: ${stats.cache.percentUsed}%`);
 
+// Test InputManager
 console.log("");
-console.log("Test completed!");
+console.log("Testing InputManager...");
+console.log("");
+
+const inputManager = framework.inputManager;
+
+console.log("Registered input handlers:");
+inputManager.list().forEach(handler => {
+    console.log(`  - ${handler.name} (${handler.enabled ? 'enabled' : 'disabled'})`);
+});
+
+// Test key state tracking
+console.log("");
+console.log("Testing key state tracking:");
+inputManager.setKeyState("w", true);
+inputManager.setKeyState("a", true);
+inputManager.setKeyState("s", false);
+
+console.log(`  W: ${inputManager.isKeyPressed("w") ? '✓' : '✗'}`);
+console.log(`  A: ${inputManager.isKeyPressed("a") ? '✓' : '✗'}`);
+console.log(`  S: ${inputManager.isKeyPressed("s") ? '✓' : '✗'}`);
+
+// Test mouse position
+console.log("");
+console.log("Testing mouse position tracking:");
+inputManager.setMousePosition(150, 250);
+const mousePos = inputManager.getMousePosition();
+console.log(`  Position: (${mousePos.x}, ${mousePos.y})`);
+
+// Test handler control
+console.log("");
+console.log("Testing handler control:");
+inputManager.disableHandler("touch");
+console.log("After disabling touch:");
+inputManager.list().forEach(handler => {
+    console.log(`  - ${handler.name} (${handler.enabled ? 'enabled' : 'disabled'})`);
+});
+
+console.log("");
+console.log("All tests completed!");
