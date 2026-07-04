@@ -2,10 +2,14 @@
 
 const CommandRegistry = require("./CommandRegistry");
 const NewCommand = require("./commands/NewCommand");
+const InstallAssetsCommand = require("./commands/InstallAssetsCommand");
+const ValidateAssetsCommand = require("./commands/ValidateAssetsCommand");
 
 const registry = new CommandRegistry();
 
 registry.register("new", new NewCommand());
+registry.register("install:assets", new InstallAssetsCommand());
+registry.register("validate:assets", new ValidateAssetsCommand());
 
 const command = process.argv[2];
 
@@ -16,7 +20,9 @@ if (!command) {
     console.log("");
     console.log("Commands:");
     console.log("");
-    console.log("   new");
+    console.log("   new                    Generate new project structure");
+    console.log("   install:assets         Install sample assets");
+    console.log("   validate:assets        Validate assets manifest");
     console.log("");
     process.exit(0);
 

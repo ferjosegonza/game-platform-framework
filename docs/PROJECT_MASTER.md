@@ -755,63 +755,91 @@ sin escribir una línea.
 
 ---
 
-# 31. Próximos pasos - Inicio Fase 2
+# 31. Estado de Fase 2 - Asset Management ✅
 
-## Tarea inmediata: Asset Manager & Loader
+## Completado exitosamente
+
+1. **AssetCache** (src/core/AssetCache.js)
+   - Implementación de cache con estrategia LRU
+   - Estimación automática de tamaño
+   - Límite de memoria configurable (50MB por defecto)
+   - Métodos: set(), get(), has(), delete(), clear()
+   - Estadísticas de uso disponibles
+
+2. **AssetLoader** (src/core/AssetLoader.js)
+   - Carga síncrona y asíncrona de assets
+   - Soporte para: PNG, JPG, WebP, GIF, MP3, WAV, OGG, JSON
+   - Validación de tipos automática
+   - Integración con AssetCache
+   - Error handling robusto
+
+3. **AssetManager** (src/core/AssetManager.js)
+   - Registro centralizado de assets
+   - Métodos: register(), preload(), preloadAll(), get(), getAsync(), unload()
+   - Prevención de carga duplicada
+   - Lista de assets registrados
+   - Estadísticas de carga
+
+4. **AssetManagerPlugin** (src/plugins/core/AssetManagerPlugin.js)
+   - Integración completa con Framework
+   - Ciclo de vida: install → start → stop
+   - EventBus para asset.loaded y asset.failed
+   - Cache size configurable
+
+5. **Comandos CLI**
+   - `npm run gpf -- install:assets` - Instala estructura y assets de ejemplo
+   - `npm run gpf -- validate:assets [path]` - Valida manifest.json y archivos
+
+---
+
+# 32. Próximos pasos - Inicio Fase 3
+
+## Tarea inmediata: Input Management
 
 Implementar primero:
 
-1. **AssetManager**
-   - Clase en `src/core/AssetManager.js`
-   - Métodos: register(), get(), preload(), unload()
-   - Validación de tipos: image, audio, json, sprite
+1. **InputManager** - Gestor central de entrada
+   - Registro y activación de handlers
+   - Sistema de teclas presionadas
+   - Delegación de eventos
 
-2. **AssetLoader**
-   - Clase en `src/core/AssetLoader.js`
-   - Soporte para: PNG, JPG, WebP, JSON
-   - Carga síncrona y asíncrona
-   - Error handling
+2. **MouseHandler** - Manejo de mouse
+   - Posición (x, y)
+   - Click, double click, drag
+   - Eventos: mouse.move, mouse.down, mouse.up, mouse.click
 
-3. **AssetCache**
-   - Map en memoria
-   - LRU eviction strategy
-   - Size limit configurable
+3. **KeyboardHandler** - Manejo de teclado
+   - Key down, key up
+   - Detección de teclas presionadas
+   - Eventos: keyboard.down, keyboard.up
 
-4. **Integración con Plugin System**
-   - `AssetManagerPlugin` que registra los managers
-   - EventBus events: asset.loaded, asset.failed
+4. **TouchHandler** - Manejo táctil
+   - Tap, swipe, pinch
+   - Multi-touch support
+   - Eventos: touch.start, touch.move, touch.end
 
-5. **Comandos CLI**
-   - `gpf install assets` - Descarga assets de ejemplo
-   - `gpf validate assets` - Valida estructura
+5. **InputManagerPlugin** - Integración con plugin system
+   - Registro automático de handlers
+   - Activación/desactivación
 
 ## Archivos a crear
 
 ```
 src/core/
-├── AssetManager.js
-├── AssetLoader.js
-└── AssetCache.js
+├── InputManager.js
+├── input/
+│   ├── MouseHandler.js
+│   ├── KeyboardHandler.js
+│   └── TouchHandler.js
 
 src/plugins/
 └── core/
-    └── AssetManagerPlugin.js
-
-installers/
-└── install-phase-2.sh
+    └── InputManagerPlugin.js
 ```
-
-## Testing
-
-En `src/test.js`:
-- Crear instancia de framework
-- Registrar AssetManagerPlugin
-- Llamar boot()
-- Probar carga de assets
 
 ---
 
-# 32. Roadmap completo
+# 33. Roadmap actualizado
 
 ## Fase 1: Framework Base
 
@@ -826,9 +854,11 @@ En `src/test.js`:
 
 ## Fase 2: Asset Management
 
-⬜ Asset Manager - Registro y acceso centralizado
-⬜ Asset Loader - Carga de recursos múltiples
-⬜ Asset Cache - Almacenamiento inteligente
+✅ Asset Manager - Registro y acceso centralizado
+✅ Asset Loader - Carga de recursos múltiples
+✅ Asset Cache - Almacenamiento inteligente con LRU eviction
+✅ AssetManagerPlugin - Integración con plugin system
+✅ Comandos CLI: install:assets, validate:assets
 
 ---
 
@@ -929,11 +959,21 @@ En `src/test.js`:
 
 ---
 
-# 33. Control de versiones del documento
+# 34. Control de versiones del documento
 
-**Versión actual: 2.0**
+**Versión actual: 2.1**
 
-**Última actualización: 2026-07-03**
+**Última actualización: 2026-07-04**
+
+**Cambios en v2.1:**
+
+- ✅ Fase 2 completada (Asset Management)
+- ✅ Implementación de AssetManager, AssetLoader, AssetCache
+- ✅ AssetManagerPlugin con integración EventBus
+- ✅ Comandos CLI: install:assets, validate:assets
+- ✅ Tests pasados exitosamente
+- ✅ Roadmap actualizado: Fase 1 y 2 completas, Fase 3 próxima
+- ✅ Próximos pasos detallados para Fase 3 (Input Management)
 
 **Cambios en v2.0:**
 
@@ -946,7 +986,7 @@ En `src/test.js`:
 
 ---
 
-# 34. Prompts para continuar el proyecto
+# 35. Prompts para continuar el proyecto
 
 ## Prompt general (usar al iniciar una conversación nueva)
 

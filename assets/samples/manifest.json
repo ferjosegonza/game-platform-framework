@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "assets": {
+    "images": [
+      {
+        "name": "placeholder-32x32",
+        "file": "images/placeholder-32x32.png",
+        "type": "image"
+      }
+    ],
+    "audio": [
+      {
+        "name": "click-sound",
+        "file": "audio/click.mp3",
+        "type": "audio"
+      }
+    ],
+    "sprites": [
+      {
+        "name": "character-idle",
+        "file": "sprites/character-idle.png",
+        "type": "sprite"
+      }
+    ]
+  }
+}
