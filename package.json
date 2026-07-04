@@ -1,0 +1,29 @@
+{
+  "name": "game-platform-framework",
+  "version": "0.1.0",
+  "description": "Framework para crear plataformas profesionales de juegos HTML5.",
+  "private": true,
+  "type": "commonjs",
+  "main": "src/cli/index.js",
+  "scripts": {
+    "gpf": "node src/cli/index.js",
+    "dev": "node src/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferjosegonza/game-platform-framework.git"
+  },
+  "keywords": [
+    "games",
+    "framework",
+    "html5",
+    "javascript",
+    "game-engine"
+  ],
+  "author": "Fernando Gonzalez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ferjosegonza/game-platform-framework/issues"
+  },
+  "homepage": "https://github.com/ferjosegonza/game-platform-framework#readme"
+}

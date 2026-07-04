@@ -1,1 +1,1 @@
-# game-platform-framework
+# Game Platform Framework
