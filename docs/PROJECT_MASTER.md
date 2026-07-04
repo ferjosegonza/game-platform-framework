@@ -835,6 +835,60 @@ sin escribir una línea.
 
 # 33. Próximos pasos - Inicio Fase 4
 
+## Tarea inmediata: Scene & UI System
+
+Implementar primero:
+
+1. **SceneManager** - Gestor de escenas
+   - Stack de escenas (push, pop)
+   - Transiciones entre escenas
+   - Ciclo de vida: init, enter, update, exit
+   - Eventos: scene.enter, scene.exit, scene.changed
+
+2. **Scene** - Clase base para escenas
+   - Métodos: init(), enter(), update(), exit()
+   - Gestión de game objects en la escena
+   - Métodos helper: add(), remove(), find()
+
+3. **UIManager** - Gestor de componentes UI
+   - Registro de componentes
+   - Sistema de posicionamiento
+   - Z-index (profundidad)
+   - Métodos: register(), create(), destroy()
+
+4. **UIComponent** - Clase base para elementos UI
+   - Propiedades: x, y, width, height, visible
+   - Métodos: render(), update(), onClick()
+   - Soporte para eventos click/hover
+
+5. **ThemeManager** - Gestor de temas
+   - Color schemes (light, dark, custom)
+   - Aplicación de temas globales
+   - CSS variables
+   - Métodos: setTheme(), getTheme()
+
+6. **SceneManagerPlugin** - Integración con plugin system
+   - Gestión automática de ciclos de vida
+   - EventBus para scene events
+
+## Archivos a crear
+
+```
+src/core/
+├── SceneManager.js
+├── Scene.js
+├── UIManager.js
+├── ui/
+│   ├── UIComponent.js
+│   └── ThemeManager.js
+
+src/plugins/
+└── core/
+    └── SceneManagerPlugin.js
+```
+
+---
+
 ## Fase 1: Framework Base
 
 ✅ CLI - CommandRegistry y comando 'new'
